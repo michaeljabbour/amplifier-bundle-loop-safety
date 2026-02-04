@@ -7,19 +7,17 @@ bundle:
 includes:
   - bundle: git+https://github.com/microsoft/amplifier-foundation@main
 
-# Orchestrator with iteration limits
+# Orchestrator with iteration limits (requires manual installation - see MANUAL_INSTALL.md)
 session:
   orchestrator:
     module: orchestrator-loop-safe
-    source: git+https://github.com/michaeljabbour/amplifier-bundle-loop-safety@main#subdirectory=modules/orchestrator-loop-safe
     config:
       max_iterations: 100
       warn_at: [75, 90]
 
-# Pattern detection hook
+# Pattern detection hook (requires manual installation - see MANUAL_INSTALL.md)
 hooks:
   - module: hooks-loop-detector
-    source: git+https://github.com/michaeljabbour/amplifier-bundle-loop-safety@main#subdirectory=modules/hooks-loop-detector
     config:
       detection_window: 10
       similarity_threshold: 0.85
