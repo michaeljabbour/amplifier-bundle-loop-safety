@@ -10,6 +10,9 @@ dependencies = [
 [project.entry-points."amplifier.modules"]
 hooks-loop-detector = "hooks_loop_detector:mount"
 
+[tool.hatch.build.targets.wheel]
+packages = ["hooks_loop_detector"]
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
