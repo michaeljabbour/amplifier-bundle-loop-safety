@@ -7,12 +7,12 @@ The bundle modules don't auto-install from GitHub (investigating why). Use this 
 
 ### Step 1: Install the orchestrator module
 ```bash
-pip install -e git+https://github.com/michaeljabbour/amplifier-bundle-loop-safety@main#subdirectory=modules/orchestrator-loop-safe
+pip install "amplifier-orchestrator-loop-safe @ git+https://github.com/michaeljabbour/amplifier-bundle-loop-safety@main#subdirectory=modules/orchestrator-loop-safe"
 ```
 
 ### Step 2: Install the hook module
 ```bash
-pip install -e git+https://github.com/michaeljabbour/amplifier-bundle-loop-safety@main#subdirectory=modules/hooks-loop-detector
+pip install "amplifier-hooks-loop-detector @ git+https://github.com/michaeljabbour/amplifier-bundle-loop-safety@main#subdirectory=modules/hooks-loop-detector"
 ```
 
 ### Step 3: Use the bundle
