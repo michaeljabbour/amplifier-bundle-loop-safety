@@ -8,15 +8,12 @@ bundle:
     - orchestrator-loop-safe: Hard iteration limits with warnings
     - hooks-loop-detector: Repetitive pattern detection
     - loop-diagnostician: Diagnostic agent for stuck sessions
-    
-    Users can include this behavior for standard loop protection,
-    or compose modules directly for custom configuration.
 
 # Orchestrator with iteration limits
 session:
   orchestrator:
     module: orchestrator-loop-safe
-    source: ../modules/orchestrator-loop-safe
+    source: git+https://github.com/michaeljabbour/amplifier-bundle-loop-safety@main#subdirectory=modules/orchestrator-loop-safe
     config:
       max_iterations: 100
       warn_at: [75, 90]
@@ -24,7 +21,7 @@ session:
 # Pattern detection hook
 hooks:
   - module: hooks-loop-detector
-    source: ../modules/hooks-loop-detector
+    source: git+https://github.com/michaeljabbour/amplifier-bundle-loop-safety@main#subdirectory=modules/hooks-loop-detector
     config:
       detection_window: 10
       similarity_threshold: 0.85
