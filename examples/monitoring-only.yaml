@@ -1,0 +1,34 @@
+---
+bundle:
+  name: my-app-with-monitoring
+  version: 1.0.0
+  description: Example using only pattern detection (no hard limits)
+
+includes:
+  - bundle: git+https://github.com/microsoft/amplifier-foundation@main
+
+# Just the hook, no orchestrator override
+hooks:
+  - module: hooks-loop-detector
+    source: git+https://github.com/org/amplifier-bundle-loop-safety@main#subdirectory=modules/hooks-loop-detector
+    config:
+      detection_window: 20
+      similarity_threshold: 0.80
+      action_on_detect: log   # Log only, don't interrupt
+      
+agents:
+  include:
+    - loop-safety:loop-diagnostician  # Still include diagnostic agent
+---
+
+# Monitoring-Only Loop Detection
+
+This configuration provides:
+- Pattern detection without hard limits
+- Logging for analysis
+- Diagnostic agent for tuning
+
+Suitable when:
+- You want visibility into patterns
+- Hard limits would be too restrictive
+- Manual intervention is preferred

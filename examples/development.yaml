@@ -1,0 +1,31 @@
+---
+bundle:
+  name: my-app-with-lenient-safety
+  version: 1.0.0
+  description: Example bundle with lenient loop safety for development
+
+includes:
+  - bundle: git+https://github.com/microsoft/amplifier-foundation@main
+  - bundle: loop-safety:behaviors/loop-safety
+
+# Override with more permissive limits
+session:
+  orchestrator:
+    config:
+      max_iterations: 500     # High limit for complex debugging
+      warn_at: [400]          # Single late warning
+
+hooks:
+  - module: hooks-loop-detector
+    config:
+      detection_window: 15    # Larger window (more lenient)
+      similarity_threshold: 0.95  # Strict matching (fewer false positives)
+      action_on_detect: warn  # Just warn, don't block
+---
+
+# Development App with Lenient Loop Safety
+
+This configuration is suitable for development where:
+- Complex investigations may require many iterations
+- False positives would be disruptive
+- Developers want awareness without strict enforcement
