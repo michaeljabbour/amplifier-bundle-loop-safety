@@ -1,19 +1,26 @@
 """Loop detector hook module for Amplifier."""
 
+# Amplifier module metadata
+__amplifier_module_type__ = "hook"
+
+import logging
+from typing import Any
+
 from .detector import LoopDetectorHook
 
+logger = logging.getLogger(__name__)
 
-async def mount(coordinator, config: dict):
+
+async def mount(coordinator, config: dict[str, Any] | None = None):
     """
     Initialize and register loop detection hooks.
 
     Args:
         coordinator: Module coordinator for hook registration
         config: Hook configuration
-
-    Returns:
-        Cleanup function to unregister handlers
     """
+    config = config or {}
+
     # Create hook instance
     hook = LoopDetectorHook(config=config)
 
@@ -40,12 +47,11 @@ async def mount(coordinator, config: dict):
         ],
     )
 
-    # Return cleanup function
-    def cleanup():
-        for unregister in handlers:
-            unregister()
-
-    return cleanup
+    logger.info(
+        f"Mounted LoopDetectorHook: events={enabled_events}, "
+        f"threshold={config.get('similarity_threshold', 0.85)}"
+    )
+    return
 
 
 __all__ = ["mount", "LoopDetectorHook"]

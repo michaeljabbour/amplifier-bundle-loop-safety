@@ -1,23 +1,24 @@
 """Loop-safe orchestrator module for Amplifier."""
 
+# Amplifier module metadata
+__amplifier_module_type__ = "orchestrator"
+
+import logging
+from typing import Any
+
 from .orchestrator import LoopSafeOrchestrator
 
+logger = logging.getLogger(__name__)
 
-async def mount(coordinator, config: dict):
-    """
-    Initialize and mount the loop-safe orchestrator.
 
-    Args:
-        coordinator: Module coordinator for registration
-        config: Orchestrator configuration
+async def mount(coordinator, config: dict[str, Any] | None = None):
+    """Mount the loop-safe orchestrator module."""
+    config = config or {}
 
-    Returns:
-        Orchestrator instance
-    """
     orchestrator = LoopSafeOrchestrator(config=config)
 
     # Register with coordinator
-    await coordinator.mount("session", orchestrator, name="orchestrator")
+    await coordinator.mount("orchestrator", orchestrator)
 
     # Register custom events for observability
     coordinator.register_contributor(
@@ -29,7 +30,10 @@ async def mount(coordinator, config: dict):
         ],
     )
 
-    return orchestrator
+    logger.info(
+        f"Mounted LoopSafeOrchestrator: max_iterations={config.get('max_iterations', 100)}"
+    )
+    return
 
 
 __all__ = ["mount", "LoopSafeOrchestrator"]

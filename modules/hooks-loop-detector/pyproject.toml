@@ -6,10 +6,10 @@ requires-python = ">=3.10"
 dependencies = []
 
 [project.entry-points."amplifier.modules"]
-hooks-loop-detector = "hooks_loop_detector:mount"
+hooks-loop-detector = "amplifier_module_hooks_loop_detector:mount"
 
 [tool.hatch.build.targets.wheel]
-packages = ["hooks_loop_detector"]
+packages = ["amplifier_module_hooks_loop_detector"]
 
 [build-system]
 requires = ["hatchling"]

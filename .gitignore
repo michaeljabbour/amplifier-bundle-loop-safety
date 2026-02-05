@@ -1,0 +1,50 @@
+# Amplifier session data
+.amplifier/
+
+# Test files created during development
+FINAL_TEST.sh
+SETUP_ENV.md
+SIMPLE_TEST.sh
+TEST_STATUS.md
+WORKAROUND_TEST.md
+bundle-local-dev.md
+test-local-bundle.yaml
+test-minimal.md
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db

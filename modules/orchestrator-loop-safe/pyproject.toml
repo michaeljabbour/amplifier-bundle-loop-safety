@@ -6,10 +6,10 @@ requires-python = ">=3.10"
 dependencies = []
 
 [project.entry-points."amplifier.modules"]
-orchestrator-loop-safe = "orchestrator_loop_safe:mount"
+orchestrator-loop-safe = "amplifier_module_orchestrator_loop_safe:mount"
 
 [tool.hatch.build.targets.wheel]
-packages = ["orchestrator_loop_safe"]
+packages = ["amplifier_module_orchestrator_loop_safe"]
 
 [build-system]
 requires = ["hatchling"]
